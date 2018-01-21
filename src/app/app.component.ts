@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MessageService } from './services/message.service';
+import * as swal from 'sweetalert';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(public _MessageService: MessageService) {
+
+  }
+  contactForm(form) {
+    this._MessageService.sendMessage(form).subscribe(() => {
+      swal("Formulario de contacto", "Mensaje enviado correctamente", 'success');
+    });
+  }
 }
